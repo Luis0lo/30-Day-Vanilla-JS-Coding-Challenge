@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+  </head>
+  <body>
+    <style>
+      h1 {
+        color: rgb(145, 153, 153);
+        text-align: center;
+        margin-top: 3rem;
+      }
+      ul {
+        list-style: none;
+        text-align: center;
+      }
+      p {
+        text-align: center;
+      }
+    </style>
+    <h1>
+      <em>Please have a look at the JavaScript Console</em> <br />Console Types
+    </h1>
+    <hr />
+    <ul>
+      <li>regular</li>
+      <li>interpolated</li>
+      <li>styled</li>
+      <li>warning!</li>
+      <li>error</li>
+      <li>testing</li>
+      <li>assert</li>
+      <li>viewing DOM Elements (check)</li>
+      <li>grouping together</li>
+      <li>counting</li>
+      <li>timing</li>
+      <li>table</li>
+    </ul>
+    <hr />
+    <p onClick="makeGreen()">Where my animation is from? (CLICK ME)</p>
+
+    <p>
+      find in your DOM (slect, right click) break on> attribute modification>
+      click over> will show you exactly where in the origem
+    </p>
+    <script>
+      const dogs = [
+        { name: "Snickers", age: 2 },
+        { name: "hugo", age: 8 },
+      ];
+
+      function makeGreen() {
+        const p = document.querySelector("p");
+        p.style.color = "#BADA55";
+        p.style.fontSize = "50px";
+      }
+
+      // Regular
+      console.log("hello");
+      // Interpolated
+      console.log("hello I am a %s string!", "person");
+      // console.log(`hello I am ${var}`)
+      // Styled
+      console.log("%c I am some great text", "font-size: 1rem;");
+
+      // warning!
+      console.warn("oh nooo");
+
+      // Error :|
+      console.error("You're done");
+
+      // Info
+      console.info("crocodiles eat 3-4 people per year");
+
+      // Testing (only if it false will trigger)
+      const p = document.querySelector("p");
+
+      console.assert(p.classList.contains("ouch"), "That is wrong!");
+      // console.assert(1 === 2, "you did not select the right element");
+
+      // clearing
+      // console.clear();
+
+      // Viewing DOM Elements (check)
+      console.log(p);
+      console.dir(p);
+
+      // Grouping together
+      dogs.forEach((dog) => {
+        console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+      });
+
+      // counting
+      console.count("Wes");
+      console.count("Wes");
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Wes");
+      console.count("Steve");
+      console.count("Wes");
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Steve");
+      console.count("Steve");
+
+      // timing
+      console.time("fetching data");
+      fetch("https://api.github.com/users/wesbos")
+        .then((data) => data.json())
+        .then((data) => {
+          console.timeEnd("fetching data");
+          console.log(data);
+        });
+
+      console.table(dogs);
+    </script>
+  </body>
+</html>
