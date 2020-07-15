@@ -1,4 +1,5 @@
 let countdown;
+
 const timerDisplay = document.querySelector('.display__time-left');
 const endTime = document.querySelector('.display__end-time');
 const buttons = document.querySelectorAll('[data-time]');
@@ -7,8 +8,8 @@ function timer(seconds) {
   // clear any existing timers
   clearInterval(countdown);
 
-  const now = Date.now();
-  const then = now + seconds * 1000;
+  const now = Date.now(); //give us current time
+  const then = now + seconds * 1000; //cause  now comes in milliseconds
   displayTimeLeft(seconds);
   displayEndTime(then);
 
@@ -28,14 +29,14 @@ function displayTimeLeft(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainderSeconds = seconds % 60;
   const display = `${minutes}:${remainderSeconds < 10 ? '0' : '' }${remainderSeconds}`;
-  document.title = display;
+  document.title = display; //title tag of the html
   timerDisplay.textContent = display;
 }
 
 function displayEndTime(timestamp) {
   const end = new Date(timestamp);
   const hour = end.getHours();
-  const adjustedHour = hour > 12 ? hour - 12 : hour;
+  const adjustedHour = hour > 12 ? hour - 12 : hour; // to avoid military hours
   const minutes = end.getMinutes();
   endTime.textContent = `Be Back At ${adjustedHour}:${minutes < 10 ? '0' : ''}${minutes}`;
 }
@@ -45,6 +46,7 @@ function startTimer() {
   timer(seconds);
 }
 
+//insert your own time
 buttons.forEach(button => button.addEventListener('click', startTimer));
 document.customForm.addEventListener('submit', function(e) {
   e.preventDefault();
